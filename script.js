@@ -35,40 +35,15 @@ $(document).ready(function() {
         return Math.floor(Math.random() * (max-min) + min) ;
     }
 
-    // Counter logic.
-    function counter() {
-        var secondString = "00";
-        var minuteString = "00";
-        var hourString = "00";
-
-        seconds++;
-        if (seconds >= 60) {
-            seconds = 0;
-            minutes++;
-            secondString = seconds;
-            if (minutes >= 60) {
-                minutes = 0;
-                hours++;
-                minuteString = minutes;
-            } else if (minutes < 10) {
-                minuteString = "0" + minutes;
-            } else {
-                minuteString = minutes;
-            }
-        } else if (seconds < 10) {
-            secondString = "0" + seconds;
-        } else {
-            secondString = seconds;
-        }
-
-        if (hours < 10) {
-            hourString = "0" + hours;
-        } else {
-            hourString = hours;
-        }
-        $("#timer").text(hourString + ":" + minuteString + ":" + secondString + " elapsed");
-    }
-
+	// Counter 2.0
+	function counter(){
+		seconds++
+		var date = new Date(null);
+		date.setSeconds(seconds);
+		var timeString = date.toISOString().substr(11,8);
+		$("#timer").text(timeString + " elapsed");
+	}
+    
     // Move to img.
     function moveDvd() {
         x = parseInt(dvd.css("left"));
